@@ -39,7 +39,7 @@ pipeline {
                 docker build -t pythonflask_urlshortener .
                 '''
             }
-            stage('Docker - Push to Dockerhub') {
+        stage('Docker - Push to Dockerhub') {
                 agent {
                     label 'dockerAgent'
                 }
@@ -52,7 +52,7 @@ pipeline {
                     '''
                 }
             }
-            stage('Terraform - Deploy to ECS') {
+        stage('Terraform - Deploy to ECS') {
                 agent 'terraformAgent'
                 steps {
                     withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'),
@@ -68,7 +68,7 @@ pipeline {
                     }
                 }
             }
-            stage('Terraform - Destroy ECS') {
+        stage('Terraform - Destroy ECS') {
                 agent 'terraformAgent'
                 steps {
                     withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'),
