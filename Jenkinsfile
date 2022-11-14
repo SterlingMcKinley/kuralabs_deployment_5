@@ -37,7 +37,7 @@ pipeline {
             }
             steps {
                 sh '''#!/bin/bash
-                docker build -t pythonflask_urlshortener .
+                sudo docker build -t pythonflask_urlshortener .
                 '''
             }
         }
@@ -47,10 +47,10 @@ pipeline {
                 }
                 steps {
                     sh '''#!/bin/bash
-                    docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
-                    docker images
-                    docker tag pythonflask_urlshortener:v1 svmckinley/pythonflask_urlshortener:v1
-                    docker push svmckinley/pythonflask_urlshortener:v1
+                    sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
+                    sudo docker images
+                    sudo docker tag pythonflask_urlshortener:v1 svmckinley/pythonflask_urlshortener:v1
+                    sudo docker push svmckinley/pythonflask_urlshortener:v1
                     '''
                 }
             }
