@@ -55,7 +55,9 @@ pipeline {
                 }
             }
         stage('Terraform - Deploy to ECS') {
-                agent 'terraformAgent'
+            agent {
+                label 'terraformAgent'
+            }
                 steps {
                     withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'),
                     string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
@@ -71,7 +73,9 @@ pipeline {
                 }
             }
         stage('Terraform - Destroy ECS') {
-                agent 'terraformAgent'
+            agent {
+                label 'terraformAgent'
+            }
                 steps {
                     withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'),
                     string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
