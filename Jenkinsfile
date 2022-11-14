@@ -37,7 +37,7 @@ pipeline {
             }
             steps {
                 sh '''#!/bin/bash
-                sudo docker build -t pythonflask_urlshortener .
+                sudo docker build -t pythonflask_urlshortener:v1 .
                 '''
             }
         }
