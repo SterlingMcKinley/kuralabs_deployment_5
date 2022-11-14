@@ -30,6 +30,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Docker - Create container') {
             agent {
                 label 'dockerAgent'
@@ -39,13 +40,14 @@ pipeline {
                 docker build -t pythonflask_urlshortener .
                 '''
             }
+        }
         stage('Docker - Push to Dockerhub') {
                 agent {
                     label 'dockerAgent'
                 }
                 steps {
                     sh '''#!/bin/bash
-                    sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
+                    docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
                     docker images
                     docker tag pythonflask_urlshortener:v1 svmckinley/pythonflask_urlshortener:v1
                     docker push svmckinley/pythonflask_urlshortener:v1
