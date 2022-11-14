@@ -20,8 +20,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh '''
-#!/bin/bash
+                sh '''#!/bin/bash
                 source test3/bin/activate
                 py.test --verbose --junit-xml test-reports/results.xml
                 '''
