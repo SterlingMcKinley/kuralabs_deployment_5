@@ -84,12 +84,12 @@ pipeline {
                     }
                 }
         }
-        post {
-            success {
-                slackSend(message: "ATTENTION: ${BUILD_TAG} has completed SUCCESSFULLY.")
+    post {
+        success {
+            slackSend(message: "ATTENTION: ${BUILD_TAG} has completed SUCCESSFULLY.")
             }
-            failure {
-                slackSend(message: "ATTENTION: ${BUILD_TAG} has FAILED. Please review errors and redploy.")
+        failure {
+            slackSend(message: "ATTENTION: ${BUILD_TAG} has FAILED. Please review errors and redploy.")
             }
         }
     }
