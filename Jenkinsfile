@@ -6,8 +6,7 @@ pipeline {
    stages {
       stage('Build') {
          steps {
-            sh ''
-            '#!/bin/bash
+            sh '''#!/bin/bash
             python3 - m venv test3
             source test3 / bin / activate
             pip install pip--upgrade
@@ -15,17 +14,15 @@ pipeline {
             pip install - r requirements.txt
             export FLASK_APP = app
             flask run &
-               ''
-            '
+            '''
          }
       }
       stage('Test') {
          steps {
-            sh ''
-            '#!/bin/bash
+            sh '''#!/bin/bash
             source test3 / bin / activate
-            py.test--verbose--junit - xml test - reports / results.xml ''
-            '
+            py.test--verbose--junit - xml test - reports / results.xml 
+            '''
          }
          post {
             always {
@@ -47,15 +44,14 @@ pipeline {
             label 'dockerAgent'
          }
          steps {
-            sh ''
-            '#!/bin/bash
+            sh '''#!/bin/bash
             sudo docker login - u $DOCKERHUB_CREDENTIALS_USR - p $DOCKERHUB_CREDENTIALS_PSW
             sudo docker images
             sudo docker tag url - shortener_main_nginx: latest svmckinley / d5_nginx: latest
             sudo docker tag url - shortener_main_gunicorn - flask: latest svmckinley / d5_gunicorn - pythonflask: latest
             sudo docker push svmckinley / d5_nginx: latest
-            sudo docker push svmckinley / d5_gunicorn - pythonflask: latest ''
-            '
+            sudo docker push svmckinley / d5_gunicorn - pythonflask: latest 
+            '''
          }
       }
       stage('Terraform - Deploy to ECS') {
