@@ -15,7 +15,7 @@ WORKDIR /kuralabs_deployment_5
 
 #Installing application dependancies 
 RUN pip install -r requirements.txt
-RUN RUN pip install gunicorn
+RUN pip install gunicorn
 
 #exposing port for traffic
 EXPOSE 8000
