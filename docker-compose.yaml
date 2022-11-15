@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   nginx:
-    build: nginx
+    #build: .
     container_name: "nginx-container"
     ports:
       - "5000:5000"
