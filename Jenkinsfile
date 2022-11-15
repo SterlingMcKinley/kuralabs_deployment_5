@@ -47,10 +47,10 @@ pipeline {
                     sh '''#!/bin/bash
                     sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
                     sudo docker images
-                    sudo docker tag d5_nginx:v1 svmckinley/d5_nginx:v1
-                    sudo docker tag d5_gunicorn-flask:v1 svmckinley/d5_gunicorn-pythonflask:v1
-                    sudo docker push svmckinley/d5_nginx:v1
-                    sudo docker push svmckinley/d5_gunicorn-pythonflask:v1
+                    sudo docker tag d5_nginx:latest svmckinley/d5_nginx:latest
+                    sudo docker tag d5_gunicorn-flask:latest svmckinley/d5_gunicorn-pythonflask:latest
+                    sudo docker push svmckinley/d5_nginx:latest
+                    sudo docker push svmckinley/d5_gunicorn-pythonflask:latest
                     '''
                 }
         }
