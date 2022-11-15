@@ -71,7 +71,6 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
   cpu                      = "512"
   execution_role_arn       = "arn:aws:iam::405971315646:role/ecsTaskEx"
   task_role_arn            = "arn:aws:iam::405971315646:role/ecsTaskEx"
-
 }
 
 # ECS Service
@@ -95,9 +94,7 @@ resource "aws_ecs_service" "aws-ecs-service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.url-app.arn
-    container_name   = "url-container"
+    container_name   = "nginx-container"
     container_port   = 5000
   }
-
 }
-
