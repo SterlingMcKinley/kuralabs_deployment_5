@@ -6,7 +6,7 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - gunicorn-pythonflask
+      - gunicorn-flask
   gunicorn-flask:
     build: gunicorn-pythonflask
     container_name: "gunicorn-pythonflask-container"
