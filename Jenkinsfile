@@ -66,7 +66,7 @@ pipeline {
                             sh 'terraform plan -out tfplan.tfplan -var="aws_access_key=$aws_access_key" -var="aws_secret_key=$aws_secret_key"'
                             sh 'terraform show -no-color tfplan.tfplan > tfplan.txt'
                             sh 'terraform apply tfplan.tfplan'
-                            sh 'sleep 400'
+                            //sh 'sleep 400'
                         }
                     }
                 }
