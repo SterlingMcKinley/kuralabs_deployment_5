@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: dockerize_nginx
+    container_name: "nginx-container"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - gunicorn-flask
+  gunicorn-flask:
+    build: dockerize_gunicorn-flask
+    container_name: "gunicorn-flask-container"
