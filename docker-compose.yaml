@@ -8,5 +8,5 @@ services:
     depends_on:
       - gunicorn-flask
   gunicorn-flask:
-    build: gunicorn-pythonflask
+    build: .
     container_name: "gunicorn-pythonflask-container"
