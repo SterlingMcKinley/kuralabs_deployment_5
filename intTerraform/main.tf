@@ -28,9 +28,9 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
 
   container_definitions = <<EOF
   [
-  {
-      "name": "url-container",
-      "image": "svmckinley/pythonflask",
+    {
+      "name": "nginx-container",
+      "image": "svmckinley/d5_nginx",
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -42,6 +42,23 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
       "portMappings": [
         {
           "containerPort": 5000
+        }
+      ]
+    },
+    {
+      "name": "gunicorn-flask-container",
+      "image": "svmckinley/d5_gunicorn-pythonflask",
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/url-logs",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "portMappings": [
+        {
+          "containerPort": 8000
         }
       ]
     }
