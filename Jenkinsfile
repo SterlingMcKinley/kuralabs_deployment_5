@@ -37,7 +37,7 @@ pipeline {
             }
             steps {
                 sh '''#!/bin/bash
-                sudo docker build -t pythonflask_urlshortener:v1 .
+                docker-compose build
                 '''
             }
         }
@@ -49,11 +49,13 @@ pipeline {
                     sh '''#!/bin/bash
                     sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
                     sudo docker images
-                    sudo docker tag pythonflask_urlshortener:v1 svmckinley/pythonflask_urlshortener:v1
-                    sudo docker push svmckinley/pythonflask_urlshortener:v1
+                    sudo docker tag d5_nginx:v1 svmckinley/d5_nginx:v1
+                    sudo docker tag d5_gunicorn-flask:v1 svmckinley/d5_gunicorn-pythonflask:v1
+                    sudo docker push svmckinley/d5_nginx:v1
+                    sudo docker push svmckinley/d5_gunicorn-pythonflask:v1
                     '''
                 }
-            }
+        }
         stage('Terraform - Deploy to ECS') {
             agent {
                 label 'terraformAgent'
@@ -66,11 +68,10 @@ pipeline {
                             sh 'terraform plan -out tfplan.tfplan -var="aws_access_key=$aws_access_key" -var="aws_secret_key=$aws_secret_key"'
                             sh 'terraform show -no-color tfplan.tfplan > tfplan.txt'
                             sh 'terraform apply tfplan.tfplan'
-                            
                         }
                     }
                 }
-            }
+        }
         stage('Terraform - Destroy ECS') {
             agent {
                 label 'terraformAgent'
@@ -83,6 +84,6 @@ pipeline {
                         }
                     }
                 }
-            }
         }
     }
+}
