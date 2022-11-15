@@ -36,9 +36,7 @@ pipeline {
                 label 'dockerAgent'
             }
             steps {
-                sh '''#!/bin/bash
-                sudo docker-compose build
-                '''
+                sh 'sudo docker-compose build'
             }
         }
         stage('Docker - Push to Dockerhub') {
